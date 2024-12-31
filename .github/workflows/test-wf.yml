@@ -36,7 +36,7 @@ jobs:
       run: npm install
       working-directory: ./temp-package
 
-    # Run the script using the temporary package.json
+        # Run the script with --input-type=module
     - name: Run hello-world script
-      run: node ../scripts/script.js
+      run: node --input-type=module ../scripts/script.js
       working-directory: ./temp-package
