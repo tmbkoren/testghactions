@@ -1,4 +1,4 @@
-name: Test Node.js Package
+name: Test Node.js Package with Temporary package.json
 
 on:
   workflow_dispatch: # Allows the workflow to be triggered manually
@@ -18,22 +18,25 @@ jobs:
       with:
         node-version: '16' # Specify your Node.js version
 
-    # Dynamically create package.json
-    - name: Generate package.json
+    # Create a temporary directory with package.json
+    - name: Create temporary package.json
       run: |
+        mkdir temp-package
         echo '{
-          "name": "test-action",
+          "name": "temp-test-action",
           "version": "1.0.0",
           "type": "module",
           "dependencies": {
             "chalk": "^5.0.0"
           }
-        }' > package.json
+        }' > temp-package/package.json
 
-    # Install dependencies
+    # Install dependencies in the temporary directory
     - name: Install dependencies
       run: npm install
+      working-directory: ./temp-package
 
-    # Run the script
+    # Run the script using the temporary package.json
     - name: Run hello-world script
-      run: node script.js
+      run: node ../scripts/script.js
+      working-directory: ./temp-package
