@@ -18,6 +18,18 @@ jobs:
       with:
         node-version: '16' # Specify your Node.js version
 
+    # Dynamically create package.json
+    - name: Generate package.json
+      run: |
+        echo '{
+          "name": "test-action",
+          "version": "1.0.0",
+          "type": "module",
+          "dependencies": {
+            "chalk": "^5.0.0"
+          }
+        }' > package.json
+
     # Install dependencies
     - name: Install dependencies
       run: npm install
