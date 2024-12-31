@@ -19,24 +19,10 @@ jobs:
         node-version: '16' # Specify your Node.js version
 
     # Create a temporary directory with package.json
-    - name: Create temporary package.json
-      run: |
-        mkdir temp-package
-        echo '{
-          "name": "temp-test-action",
-          "version": "1.0.0",
-          "type": "module",
-          "dependencies": {
-            "chalk": "^5.0.0"
-          }
-        }' > temp-package/package.json
-
     # Install dependencies in the temporary directory
     - name: Install dependencies
       run: npm install
-      working-directory: ./temp-package
 
         # Run the script with --input-type=module
     - name: Run hello-world script
-      run: node --input-type=module ../scripts/script.js
-      working-directory: ./temp-package
+      run: node /scripts/script.js
