@@ -1,0 +1,33 @@
+name: Test Node.js Package
+
+on:
+  workflow_dispatch: # Allows the workflow to be triggered manually
+
+jobs:
+  test-node-package:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Set up Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16' # Specify your Node.js version
+
+    # Create a minimal package.json
+    - name: Create package.json
+      run: |
+        echo '{ "name": "test-action", "version": "1.0.0", "dependencies": { "chalk": "^5.0.0" } }' > package.json
+
+    # Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Use the package in a Node.js script
+    - name: Run script
+      run: |
+        node script.js
