@@ -24,4 +24,4 @@ jobs:
 
     # Run the script
     - name: Run hello-world script
-      run: node scripts/hello-world.mjs
+      run: node script.js
