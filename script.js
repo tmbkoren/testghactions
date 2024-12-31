@@ -1,1 +1,3 @@
-console.log(require('chalk').green('Hello, World!'));
+import chalk from 'chalk';
+
+console.log(chalk.green('Hello, World!'));
