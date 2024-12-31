@@ -25,4 +25,4 @@ jobs:
 
         # Run the script with --input-type=module
     - name: Run hello-world script
-      run: node /scripts/script.js
+      run: node ../scripts/script.js
